@@ -141,16 +141,21 @@ function loadCourses(level) {
 }
 
 // Back Button Functionality
-function goBack(section) {
-    if (section === "country") {
-        document.getElementById("university-selection").classList.add("hidden");
-        document.getElementById("country-selection").classList.remove("hidden");
-    } else if (section === "university") {
-        document.getElementById("course-level-selection").classList.add("hidden");
-        document.getElementById("university-selection").classList.remove("hidden");
-    } else if (section === "level") {
-        document.getElementById("courses-display").classList.add("hidden");
-        document.getElementById("course-level-selection").classList.remove("hidden");
+unction goBack(section) {
+    // Hide all first
+    document.querySelectorAll('.search-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+    
+    if (section === 'country') {
+        document.getElementById('country-selection').classList.remove('hidden');
+        updateStep(1);
+    } else if (section === 'university') {
+        document.getElementById('university-selection').classList.remove('hidden');
+        updateStep(2);
+    } else if (section === 'level') {
+        document.getElementById('course-level-selection').classList.remove('hidden');
+        updateStep(3);
     }
 }
 
@@ -176,6 +181,13 @@ function setupEventListeners() {
 
 // Initialize App
 function init() {
+    // Reset all sections first
+    document.querySelectorAll('.search-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+    // Show only country selection
+    document.getElementById('country-selection').classList.remove('hidden');
+    
     loadCountries();
     setupEventListeners();
 }
