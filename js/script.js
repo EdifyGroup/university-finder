@@ -49,6 +49,28 @@ const universitySearch = document.getElementById("university-search");
 let currentCountry = null;
 let currentUniversity = null;
 
+
+
+
+// Add this new function
+function setupEventListeners() {
+    // University search functionality
+    universitySearch.addEventListener('input', () => {
+        const searchTerm = universitySearch.value.toLowerCase();
+        const items = document.querySelectorAll('.university-item');
+        
+        items.forEach(item => {
+            const name = item.querySelector('h4').textContent.toLowerCase();
+            item.style.display = name.includes(searchTerm) ? 'block' : 'none';
+        });
+    });
+}
+
+
+
+
+
+
 // Initialize App
 function init() {
     loadCountries();
